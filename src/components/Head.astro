@@ -1,5 +1,6 @@
 ---
 import { SITE } from "@/consts"
+import { Font } from "astro:assets"
 import { ClientRouter } from "astro:transitions"
 import Favicons from "./Favicons.astro"
 ---
@@ -32,6 +33,9 @@ import Favicons from "./Favicons.astro"
     content="#121212"
     media="(prefers-color-scheme: light)"
   />
+
+  <Font cssVariable="--font-geist" preload />
+  <Font cssVariable="--font-geist-mono" preload />
 
   <link rel="sitemap" href="/sitemap-index.xml" />
   <link rel="manifest" href="/site.webmanifest" />

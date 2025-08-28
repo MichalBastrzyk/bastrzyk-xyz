@@ -1,4 +1,4 @@
-import { defineConfig } from "astro/config"
+import { defineConfig, fontProviders } from "astro/config"
 
 import mdx from "@astrojs/mdx"
 import react from "@astrojs/react"
@@ -32,9 +32,9 @@ export default defineConfig({
         collapseStyle: "collapsible-auto",
         overridesByLang: {
           "ansi,bat,bash,batch,cmd,console,powershell,ps,ps1,psd1,psm1,sh,shell,shellscript,shellsession,text,zsh":
-            {
-              showLineNumbers: false,
-            },
+          {
+            showLineNumbers: false,
+          },
         },
       },
       styleOverrides: {
@@ -77,8 +77,25 @@ export default defineConfig({
     port: 3000,
     host: true,
   },
+  build: {
+    inlineStylesheets: "always",
+  },
   devToolbar: {
     enabled: true,
+  },
+  experimental: {
+    fonts: [
+      {
+        provider: fontProviders.google(),
+        name: "Geist",
+        cssVariable: "--font-geist"
+      },
+      {
+        provider: fontProviders.google(),
+        name: "Geist Mono",
+        cssVariable: "--font-geist-mono"
+      }
+    ]
   },
   markdown: {
     syntaxHighlight: false,
