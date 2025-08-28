@@ -86,14 +86,20 @@ export default defineConfig({
   experimental: {
     fonts: [
       {
+        // Sans Font
         provider: fontProviders.google(),
-        name: "Geist",
-        cssVariable: "--font-geist"
+        name: "Geist", // Change this to change the font globally
+        cssVariable: "--sans",
+        weights: ["100 900"],
+        subsets: ["latin"]
       },
       {
+        // Mono Font
         provider: fontProviders.google(),
-        name: "Geist Mono",
-        cssVariable: "--font-geist-mono"
+        name: "Geist Mono", // Change this to change the font globally
+        cssVariable: "--mono",
+        weights: ["100 900"],
+        subsets: ["latin"]
       }
     ]
   },
