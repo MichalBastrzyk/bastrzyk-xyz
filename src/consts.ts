@@ -25,8 +25,8 @@ export const NAV_LINKS: SocialLink[] = [
     label: "uses",
   },
   {
-    href: "/about",
-    label: "about",
+    href: "/about-me",
+    label: "about me",
   },
 ]
 
