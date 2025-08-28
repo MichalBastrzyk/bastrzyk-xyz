@@ -103,14 +103,15 @@ export default defineConfig({
       }
     ]
   },
+  image: {
+    layout: "constrained"
+  },
   markdown: {
     syntaxHighlight: false,
     rehypePlugins: [
       [
         rehypeDocument,
-        {
-          css: "https://cdn.jsdelivr.net/npm/katex@0.16.21/dist/katex.min.css",
-        },
+        {},
       ],
       [
         rehypeExternalLinks,
