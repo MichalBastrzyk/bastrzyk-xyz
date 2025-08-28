@@ -1,6 +1,6 @@
 ---
-import Link from '@/components/Link.astro'
-import { ScrollArea } from '@/components/ui/scroll-area'
+import Link from "@/components/Link.astro"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import {
   getCombinedReadingTime,
   getParentId,
@@ -9,8 +9,8 @@ import {
   getPostReadingTime,
   getSubpostsForParent,
   isSubpost,
-} from '@/lib/data-utils'
-import { Icon } from 'astro-icon/components'
+} from "@/lib/data-utils"
+import { Icon } from "astro-icon/components"
 
 const { parentId } = Astro.props
 const currentPostId = Astro.params.id as string
@@ -71,7 +71,7 @@ const subpostsWithReadingTime = await Promise.all(
                           activePostCombinedReadingTime !==
                             activePostReadingTime && (
                             <span>
-                              {' '}
+                              {" "}
                               ({activePostCombinedReadingTime} total)
                             </span>
                           )}
@@ -100,7 +100,7 @@ const subpostsWithReadingTime = await Promise.all(
                           activePostCombinedReadingTime !==
                             activePostReadingTime && (
                             <span>
-                              {' '}
+                              {" "}
                               ({activePostCombinedReadingTime} total)
                             </span>
                           )}
@@ -184,8 +184,8 @@ const subpostsWithReadingTime = await Promise.all(
       const isAtTop = scrollTop <= threshold
       const isAtBottom = scrollTop >= scrollHeight - clientHeight - threshold
 
-      state.sidebarScrollArea.classList.toggle('mask-t-from-90%', !isAtTop)
-      state.sidebarScrollArea.classList.toggle('mask-b-from-90%', !isAtBottom)
+      state.sidebarScrollArea.classList.toggle("mask-t-from-90%", !isAtTop)
+      state.sidebarScrollArea.classList.toggle("mask-b-from-90%", !isAtBottom)
     }
   }
 
@@ -194,7 +194,7 @@ const subpostsWithReadingTime = await Promise.all(
       if (!state.scrollArea) return
 
       const activeItem = state.scrollArea.querySelector(
-        '.subposts-sidebar-active-item',
+        ".subposts-sidebar-active-item",
       )
       if (!activeItem) {
         return
@@ -223,19 +223,19 @@ const subpostsWithReadingTime = await Promise.all(
       state.reset()
 
       const sidebarContainer = document.getElementById(
-        'subposts-sidebar-container',
+        "subposts-sidebar-container",
       )
       if (sidebarContainer) {
         state.scrollArea = sidebarContainer.querySelector(
-          '[data-radix-scroll-area-viewport]',
+          "[data-radix-scroll-area-viewport]",
         )
         state.sidebarScrollArea = sidebarContainer.querySelector(
-          '[data-subposts-sidebar-scroll]',
+          "[data-subposts-sidebar-scroll]",
         )
 
         if (state.scrollArea) {
           state.scrollArea.addEventListener(
-            'scroll',
+            "scroll",
             SidebarScrollMask.update,
             { passive: true },
           )
@@ -250,18 +250,18 @@ const subpostsWithReadingTime = await Promise.all(
 
     static cleanup() {
       if (state.scrollArea) {
-        state.scrollArea.removeEventListener('scroll', SidebarScrollMask.update)
+        state.scrollArea.removeEventListener("scroll", SidebarScrollMask.update)
       }
       state.reset()
     }
   }
 
-  document.addEventListener('astro:page-load', () => SidebarController.init())
-  document.addEventListener('astro:after-swap', () => {
+  document.addEventListener("astro:page-load", () => SidebarController.init())
+  document.addEventListener("astro:after-swap", () => {
     SidebarController.cleanup()
     SidebarController.init()
   })
-  document.addEventListener('astro:before-swap', () =>
+  document.addEventListener("astro:before-swap", () =>
     SidebarController.cleanup(),
   )
 </script>

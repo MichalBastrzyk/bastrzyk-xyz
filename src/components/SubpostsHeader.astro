@@ -1,5 +1,5 @@
 ---
-import { ScrollArea } from '@/components/ui/scroll-area'
+import { ScrollArea } from "@/components/ui/scroll-area"
 import {
   getCombinedReadingTime,
   getParentId,
@@ -8,8 +8,8 @@ import {
   getPostReadingTime,
   getSubpostsForParent,
   isSubpost,
-} from '@/lib/data-utils'
-import { Icon } from 'astro-icon/components'
+} from "@/lib/data-utils"
+import { Icon } from "astro-icon/components"
 
 const { parentId } = Astro.props
 const currentPostId = Astro.params.id as string
@@ -52,10 +52,10 @@ const currentSubpostDetails = isCurrentSubpost
               <Icon
                 name={
                   currentSubpostDetails
-                    ? 'lucide:file-text'
+                    ? "lucide:file-text"
                     : isActivePost
-                      ? 'lucide:book-open-text'
-                      : 'lucide:book-open'
+                      ? "lucide:book-open-text"
+                      : "lucide:book-open"
                 }
                 class="size-4 flex-shrink-0"
                 aria-hidden="true"
@@ -104,7 +104,7 @@ const currentSubpostDetails = isCurrentSubpost
                               activePostCombinedReadingTime !==
                                 activePostReadingTime && (
                                 <span>
-                                  {' '}
+                                  {" "}
                                   ({activePostCombinedReadingTime} total)
                                 </span>
                               )}
@@ -133,7 +133,7 @@ const currentSubpostDetails = isCurrentSubpost
                               activePostCombinedReadingTime !==
                                 activePostReadingTime && (
                                 <span>
-                                  {' '}
+                                  {" "}
                                   ({activePostCombinedReadingTime} total)
                                 </span>
                               )}
@@ -215,8 +215,8 @@ const currentSubpostDetails = isCurrentSubpost
       const isAtTop = scrollTop <= threshold
       const isAtBottom = scrollTop >= scrollHeight - clientHeight - threshold
 
-      state.headerScrollArea.classList.toggle('mask-t-from-80%', !isAtTop)
-      state.headerScrollArea.classList.toggle('mask-b-from-80%', !isAtBottom)
+      state.headerScrollArea.classList.toggle("mask-t-from-80%", !isAtTop)
+      state.headerScrollArea.classList.toggle("mask-b-from-80%", !isAtBottom)
     }
   }
 
@@ -225,7 +225,7 @@ const currentSubpostDetails = isCurrentSubpost
       if (!state.scrollArea) return
 
       const activeItem = state.scrollArea.querySelector(
-        '.mobile-subposts-active-item',
+        ".mobile-subposts-active-item",
       )
       if (!activeItem) return
 
@@ -247,28 +247,28 @@ const currentSubpostDetails = isCurrentSubpost
     }
 
     static setupInteraction() {
-      const container = document.getElementById('mobile-subposts-container')
+      const container = document.getElementById("mobile-subposts-container")
       if (!container) return
 
       state.scrollArea = container.querySelector(
-        '[data-radix-scroll-area-viewport]',
+        "[data-radix-scroll-area-viewport]",
       )
-      state.detailsElement = container.querySelector('details')
+      state.detailsElement = container.querySelector("details")
       state.headerScrollArea = container.querySelector(
-        '[data-subposts-header-scroll]',
+        "[data-subposts-header-scroll]",
       )
-      const links = container.querySelectorAll('.mobile-subposts-link')
+      const links = container.querySelectorAll(".mobile-subposts-link")
 
       if (state.scrollArea) {
         state.scrollArea.addEventListener(
-          'scroll',
+          "scroll",
           SubpostsHeaderScrollMask.update,
           { passive: true },
         )
       }
 
       if (state.detailsElement) {
-        state.detailsElement.addEventListener('toggle', () => {
+        state.detailsElement.addEventListener("toggle", () => {
           if (state.detailsElement?.open) {
             requestAnimationFrame(() => {
               SubpostsScroll.toActive()
@@ -279,7 +279,7 @@ const currentSubpostDetails = isCurrentSubpost
       }
 
       links.forEach((link) => {
-        link.addEventListener('click', () => {
+        link.addEventListener("click", () => {
           if (state.detailsElement) state.detailsElement.open = false
         })
       })
@@ -295,7 +295,7 @@ const currentSubpostDetails = isCurrentSubpost
     static cleanup() {
       if (state.scrollArea) {
         state.scrollArea.removeEventListener(
-          'scroll',
+          "scroll",
           SubpostsHeaderScrollMask.update,
         )
       }
@@ -303,12 +303,12 @@ const currentSubpostDetails = isCurrentSubpost
     }
   }
 
-  document.addEventListener('astro:page-load', () => SubpostsController.init())
-  document.addEventListener('astro:after-swap', () => {
+  document.addEventListener("astro:page-load", () => SubpostsController.init())
+  document.addEventListener("astro:after-swap", () => {
     SubpostsController.cleanup()
     SubpostsController.init()
   })
-  document.addEventListener('astro:before-swap', () =>
+  document.addEventListener("astro:before-swap", () =>
     SubpostsController.cleanup(),
   )
 </script>

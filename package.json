@@ -1,7 +1,7 @@
 {
-  "name": "astro-erudite",
+  "name": "bastrzyk-xyz",
   "type": "module",
-  "version": "1.6.2",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "astro dev",
@@ -53,7 +53,7 @@
   },
   "prettier": {
     "semi": false,
-    "singleQuote": true,
+    "singleQuote": false,
     "plugins": [
       "prettier-plugin-astro",
       "prettier-plugin-tailwindcss",
